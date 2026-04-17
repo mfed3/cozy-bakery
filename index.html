@@ -42,14 +42,13 @@
         };
 
         const App = () => {
-            const [activeCategory, setActiveCategory] = useState('breads');
             const [cart, setCart] = useState([]);
 
             const categories = [
-                { id: 'breads', name: 'Breads', icon: '🍞' },
-                { id: 'pies', name: 'Pies', icon: '🥧' },
-                { id: 'cookies', name: 'Cookies', icon: '🍪' },
-                { id: 'pastries', name: 'Pastries', icon: '🥐' }
+                { id: 'breads', name: 'Breads' },
+                { id: 'pies', name: 'Pies' },
+                { id: 'cookies', name: 'Cookies' },
+                { id: 'pastries', name: 'Pastries' }
             ];
 
             const addToCart = (product) => {
@@ -72,72 +71,65 @@
                     </header>
 
                     <main className="main-content">
-                        <section className="categories">
-                            {categories.map(cat => (
-                                <button
-                                    key={cat.id}
-                                    className={`category-btn ${activeCategory === cat.id ? 'active' : ''}`}
-                                    onClick={() => setActiveCategory(cat.id)}
-                                >
-                                    <span className="category-icon">{cat.icon}</span>
-                                    <span className="category-name">{cat.name}</span>
-                                </button>
-                            ))}
-                        </section>
-
                         <section className="products-section">
-                            <h2 className="section-title">{categories.find(c => c.id === activeCategory).name}</h2>
-                            <div className="products-grid">
-                                {products[activeCategory].map((product, index) => (
-                                    <div key={index} className="product-card">
-                                        <div className="product-image">{product.image}</div>
-                                        <h3 className="product-name">{product.name}</h3>
-                                        <p className="product-desc">{product.description}</p>
-                                        <div className="product-price">${product.price.toFixed(2)}</div>
-                                        <button 
-                                            className="add-btn"
-                                            onClick={() => addToCart(product)}
-                                        >
-                                            <i className="fas fa-plus"></i> Add to Cart
-                                        </button>
+                            {categories.map(cat => (
+                                <div key={cat.id} className="category-stack">
+                                    <h2 className="section-title">{cat.name}</h2>
+                                    <div className="category-products horizontal">
+                                        {products[cat.id].map((product, index) => (
+                                            <div key={index} className="product-card">
+                                                <div className="product-image">{product.image}</div>
+                                                <h3 className="product-name">{product.name}</h3>
+                                                <p className="product-desc">{product.description}</p>
+                                                <div className="product-price">${product.price.toFixed(2)}</div>
+                                                <button 
+                                                    className="add-btn"
+                                                    onClick={() => addToCart(product)}
+                                                >
+                                                    <i className="fas fa-plus"></i> Add to Cart
+                                                </button>
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
-                            </div>
+                                </div>
+                            ))}
                         </section>
 
                         <section className="cart-section">
                             <h2 className="cart-title">Your Cart</h2>
-                            {cart.length === 0 ? (
-                                <p className="empty-cart">Your cart is empty</p>
-                            ) : (
-                                <div className="cart-items">
-                                    {cart.map((item, index) => (
-                                        <div key={index} className="cart-item">
-                                            <span className="cart-item-name">{item.name}</span>
-                                            <span className="cart-item-price">${item.price.toFixed(2)}</span>
-                                            <button 
-                                                className="remove-btn"
-                                                onClick={() => removeFromCart(index)}
-                                            >
-                                                <i className="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    ))}
+                            <div className="cart-content">
+                                {cart.length === 0 ? (
+                                    <p className="empty-cart">Your cart is empty</p>
+                                ) : (
+                                    <div className="cart-items">
+                                        {cart.map((item, index) => (
+                                            <div key={index} className="cart-item">
+                                                <span className="cart-item-name">{item.name}</span>
+                                                <span className="cart-item-price">${item.price.toFixed(2)}</span>
+                                                <button 
+                                                    className="remove-btn"
+                                                    onClick={() => removeFromCart(index)}
+                                                >
+                                                    <i className="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                                <div className="cart-total">
+                                    <span>Total:</span>
+                                    <span>${cartTotal}</span>
                                 </div>
-                            )}
-                            <div className="cart-total">
-                                <span>Total:</span>
-                                <span>${cartTotal}</span>
+                                <button className="checkout-btn" onClick={() => alert('Thank you for your order! Contact us to complete your purchase.')}>
+                                    Checkout
+                                </button>
                             </div>
-                            <button className="checkout-btn" onClick={() => alert('Thank you for your order! Contact us to complete your purchase.')}>
-                                Checkout
-                            </button>
                         </section>
                     </main>
 
                     <footer className="footer">
                         <div className="footer-content">
-                                <h3>🏡 Cozy Loaf</h3>
+                            <h3>🏡 Cozy Loaf</h3>
                             <p>Made with love in our home kitchen</p>
                             <div className="footer-links">
                                 <a href="#">Contact Us</a>
