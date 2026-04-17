@@ -16,9 +16,9 @@
         }
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 100%);
+            background: linear-gradient(135deg, #4a3728 0%, #3d2f24 100%);
             min-height: 100vh;
-            color: #5d4e42;
+            color: #d4c4b0;
         }
     </style>
 </head>
@@ -28,43 +28,46 @@
         const { useState, useEffect } = React;
 
         const products = {
-            bakedGoods: [
+            breads: [
                 { name: "Artisan Sourdough Bread", price: 8.99, description: "Traditional sourdough with a crispy crust", image: "🍞" },
-                { name: "Croissants", price: 4.99, description: "Flaky layers of buttery pastry", image: "🥐" },
-                { name: "Swiss Rolls", price: 3.99, description: "Swirled sponge cake with cream filling", image: "🍰" },
-                { name: "Fresh Pastries", price: 3.49, description: "Assorted morning pastries including danish, cinnamon rolls, and more", image: "🍮" },
+                { name: "Whole Wheat Loaf", price: 6.49, description: "Hearty whole grain bread", image: "🥖" },
+                { name: "Ciabatta", price: 5.99, description: "Light and airy Italian bread", image: "🥖" },
+                { name: "Baguette", price: 4.49, description: "Classic French bread", image: "🥖" },
+                { name: "Rye Bread", price: 5.49, description: "Dark rye with caraway seeds", image: "🍞" }
+            ],
+            pies: [
+                { name: "Apple Pie", price: 8.99, description: "Classic homemade apple pie", image: "🥧" },
+                { name: "Blueberry Pie", price: 8.99, description: "Sweet blueberry filling in flaky crust", image: "🥧" },
+                { name: "Cherry Pie", price: 8.99, description: "Tart cherry filling with cinnamon", image: "🥧" },
+                { name: "Pecan Pie", price: 9.49, description: "Rich Southern pecan pie", image: "🥧" },
+                { name: "Pumpkin Pie", price: 8.49, description: "Autumn classic with whipped cream", image: "🥧" }
+            ],
+            cookies: [
                 { name: "Chocolate Chip Cookies", price: 2.49, description: "Homemade with real chocolate chips", image: "🍪" },
-                { name: "Layer Cake", price: 24.99, description: "Three-layer celebration cake", image: "🎂" },
-                { name: "Apple Pie", price: 8.99, description: "Classic homemade apple pie", image: "🥧" }
+                { name: "Oatmeal Raisin Cookies", price: 2.49, description: "Chewy oatmeal with raisins", image: "🍪" },
+                { name: "Snickerdoodles", price: 2.49, description: "Classic cinnamon sugar cookies", image: "🍪" },
+                { name: "Double Chocolate Cookies", price: 3.49, description: "Double chocolate delight", image: "🍪" },
+                { name: "Sugar Cookies", price: 2.99, description: "Perfect for decorating", image: "🍪" }
             ],
-            chocolateItems: [
-                { name: "Chocolate-Covered Almonds", price: 6.99, description: "Premium almonds with dark chocolate", image: "🌰" },
-                { name: "Chocolate-Covered Raisins", price: 5.99, description: "Sweet raisins in rich chocolate", image: "🍇" },
-                { name: "Dried Fruit Mix", price: 7.99, description: "Assorted dried fruits", image: "🍒" }
-            ],
-            fruitProducts: [
-                { name: "Strawberry Jam", price: 5.99, description: "Fresh strawberry preserves", image: "🍓" },
-                { name: "Blueberry Jelly", price: 5.99, description: "Sweet blueberry jelly", image: "🫐" },
-                { name: "Mixed Berry Preserves", price: 6.49, description: "Seasonal berry mix", image: "🍇" }
-            ],
-            dryGoods: [
-                { name: "Dried Cranberries", price: 4.99, description: "Sweet and tart dried cranberries", image: "🍒" },
-                { name: "Dried Pasta", price: 3.99, description: "Homemade dried pasta", image: "🍝" },
-                { name: "Baking Mix - Chocolate Chip", price: 6.99, description: "Complete mix for cookies", image: "🍪" },
-                { name: "Baking Mix - Vanilla Cake", price: 6.99, description: "Complete mix for vanilla cake", image: "🎂" }
+            pastries: [
+                { name: "Croissants", price: 4.99, description: "Flaky layers of buttery pastry", image: "🥐" },
+                { name: "Cornetti", price: 4.99, description: "Filled Italian pastries with cream or jam", image: "🥐" },
+                { name: "Fresh Pastries", price: 3.49, description: "Assorted morning pastries including danish, cinnamon rolls, and more", image: "🍮" },
+                { name: "Blueberry Muffins", price: 3.99, description: "Bursting with fresh blueberries", image: "🧁" },
+                { name: "Banana Bread Muffins", price: 3.49, description: "Sweet and moist banana bread muffins", image: "🧁" }
             ]
         };
 
         const App = () => {
-            const [activeCategory, setActiveCategory] = useState('bakedGoods');
+            const [activeCategory, setActiveCategory] = useState('breads');
             const [cart, setCart] = useState([]);
             const [isMenuOpen, setIsMenuOpen] = useState(false);
 
             const categories = [
-                { id: 'bakedGoods', name: 'Baked Goods', icon: '🍞' },
-                { id: 'chocolateItems', name: 'Chocolate Items', icon: '🍫' },
-                { id: 'fruitProducts', name: 'Fruit Products', icon: '🍓' },
-                { id: 'dryGoods', name: 'Dry Goods', icon: '📦' }
+                { id: 'breads', name: 'Breads', icon: '🍞' },
+                { id: 'pies', name: 'Pies', icon: '🥧' },
+                { id: 'cookies', name: 'Cookies', icon: '🍪' },
+                { id: 'pastries', name: 'Pastries', icon: '🥐' }
             ];
 
             const addToCart = (product) => {
@@ -177,8 +180,8 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #8b5a2b 0%, #6b4423 100%);
-            color: white;
+            background: linear-gradient(135deg, #3d2f24 0%, #2a2018 100%);
+            color: #d4c4b0;
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 20px;
@@ -227,8 +230,8 @@
         }
 
         .category-btn {
-            background: white;
-            border: 2px solid #8b5a2b;
+            background: #2d2520;
+            border: 2px solid #5a4a3e;
             border-radius: 10px;
             padding: 15px 20px;
             cursor: pointer;
@@ -238,14 +241,14 @@
         }
 
         .category-btn:hover {
-            background: #8b5a2b;
-            color: white;
+            background: #5a4a3e;
+            color: #ffffff;
             transform: translateY(-2px);
         }
 
         .category-btn.active {
-            background: #8b5a2b;
-            color: white;
+            background: #5a4a3e;
+            color: #ffffff;
         }
 
         .category-icon {
@@ -260,15 +263,15 @@
         }
 
         .products-section {
-            background: white;
+            background: #251f1a;
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .section-title {
             text-align: center;
-            color: #8b5a2b;
+            color: #8b695e;
             margin-bottom: 20px;
             font-size: 1.5rem;
         }
@@ -280,8 +283,8 @@
         }
 
         .product-card {
-            background: linear-gradient(135deg, #fff8f0 0%, #fff 100%);
-            border: 1px solid #e8d5c4;
+            background: linear-gradient(135deg, #2d2520 0%, #251f1a 100%);
+            border: 1px solid #5a4a3e;
             border-radius: 15px;
             padding: 20px;
             text-align: center;
@@ -300,26 +303,26 @@
 
         .product-name {
             font-size: 1.1rem;
-            color: #5d4e42;
+            color: #d4c4b0;
             margin-bottom: 8px;
         }
 
         .product-desc {
             font-size: 0.85rem;
-            color: #8b7360;
+            color: #8b857a;
             margin-bottom: 10px;
         }
 
         .product-price {
             font-size: 1.2rem;
-            color: #8b5a2b;
+            color: #a68c7a;
             font-weight: bold;
             margin-bottom: 15px;
         }
 
         .add-btn {
-            background: linear-gradient(135deg, #8b5a2b 0%, #6b4423 100%);
-            color: white;
+            background: linear-gradient(135deg, #5a4a3e 0%, #3d2f24 100%);
+            color: #d4c4b0;
             border: none;
             padding: 12px 25px;
             border-radius: 25px;
@@ -330,26 +333,26 @@
         }
 
         .add-btn:hover {
-            background: linear-gradient(135deg, #6b4423 0%, #4a3320 100%);
+            background: linear-gradient(135deg, #3d2f24 0%, #2a2018 100%);
             transform: scale(1.02);
         }
 
         .cart-section {
-            background: white;
+            background: #251f1a;
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .cart-title {
-            color: #8b5a2b;
+            color: #8b695e;
             margin-bottom: 15px;
             text-align: center;
         }
 
         .empty-cart {
             text-align: center;
-            color: #8b7360;
+            color: #8b857a;
             padding: 20px;
         }
 
@@ -363,7 +366,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px;
-            border-bottom: 1px solid #e8d5c4;
+            border-bottom: 1px solid #5a4a3e;
         }
 
         .cart-item:last-child {
@@ -372,11 +375,11 @@
 
         .cart-item-name {
             flex: 1;
-            color: #5d4e42;
+            color: #d4c4b0;
         }
 
         .cart-item-price {
-            color: #8b5a2b;
+            color: #a68c7a;
             font-weight: bold;
         }
 
@@ -395,14 +398,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px;
-            background: #f5e6d3;
+            background: #2d2520;
             border-radius: 10px;
             margin-top: 15px;
         }
 
         .checkout-btn {
-            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-            color: white;
+            background: linear-gradient(135deg, #1e7a4a 0%, #165c3a 100%);
+            color: #d4c4b0;
             border: none;
             padding: 15px 30px;
             border-radius: 25px;
@@ -419,8 +422,8 @@
         }
 
         .footer {
-            background: #5d4e42;
-            color: white;
+            background: #2a2018;
+            color: #d4c4b0;
             padding: 30px 20px;
             margin-top: 20px;
             border-radius: 15px;
@@ -439,7 +442,7 @@
         }
 
         .footer-links a {
-            color: #d4c5b0;
+            color: #a69c8c;
             text-decoration: none;
             margin: 0 10px;
             transition: color 0.3s ease;
