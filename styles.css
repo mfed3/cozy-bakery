@@ -134,6 +134,9 @@ body {
     padding: 20px;
     text-align: center;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .product-card:hover {
@@ -162,7 +165,7 @@ body {
     font-size: 1.2rem;
     color: #a68c7a;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 0;
 }
 
 .add-btn {
@@ -175,6 +178,7 @@ body {
     font-size: 0.9rem;
     transition: all 0.3s ease;
     width: 100%;
+    margin-top: auto;
 }
 
 .add-btn:hover {
